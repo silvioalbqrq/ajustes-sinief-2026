@@ -3,522 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ajustes SINIEF 2026 — Despacho CONFAZ nº 18</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --primary:#1e40af; --primary-light:#3b82f6; --primary-bg:#eff6ff;
-    --accent:#10b981; --accent-bg:#ecfdf5;
-    --warning:#f59e0b; --warning-bg:#fffbeb;
-    --danger:#ef4444; --danger-bg:#fef2f2;
-    --text:#1f2937; --muted:#6b7280; --border:#e5e7eb;
-    --bg:#f9fafb; --white:#ffffff;
-    --radius:10px; --shadow:0 1px 3px rgba(0,0,0,.08);
-    --shadow-md:0 4px 12px rgba(0,0,0,.10); --sw:268px;
-  }
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
-
-  /* SIDEBAR */
-  #sidebar{position:fixed;left:0;top:0;bottom:0;width:var(--sw);background:var(--white);border-right:1px solid var(--border);overflow-y:auto;z-index:40;transform:translateX(-100%);transition:transform .28s ease;display:flex;flex-direction:column}
-  #sidebar.open{transform:translateX(0)}
-  @media(min-width:768px){#sidebar{transform:translateX(0)}}
-  .slogo{padding:22px 18px 14px;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:800;color:var(--primary);border-bottom:1px solid var(--border);line-height:1.3}
-  .slogo small{display:block;font-size:.67rem;font-weight:500;color:var(--muted);margin-top:2px}
-  #sidebar nav{padding:10px 8px}
-  .ng{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);padding:10px 10px 4px}
-  .nb{display:flex;align-items:center;gap:7px;width:100%;text-align:left;padding:7px 11px;border-radius:7px;border:none;background:none;cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);transition:background .15s,color .15s;margin-bottom:1px}
-  .nb:hover{background:var(--primary-bg);color:var(--primary)}
-  .nb.on{background:var(--primary);color:#fff}
-  .nb .ic{font-size:.9rem;flex-shrink:0}
-  .nt{margin-left:auto;font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:4px;flex-shrink:0}
-  .nt.a{background:#dbeafe;color:#1d4ed8} .nt.r{background:#fee2e2;color:#b91c1c}
-  .nb.on .nt{background:rgba(255,255,255,.25);color:#fff}
-
-  #ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:35}
-  #ov.show{display:block}
-
-  /* LAYOUT */
-  #sh{display:flex;flex-direction:column;min-height:100vh}
-  @media(min-width:768px){#sh{margin-left:var(--sw)}}
-  #tb{position:sticky;top:0;z-index:30;background:var(--white);border-bottom:1px solid var(--border);padding:11px 18px;display:flex;align-items:center;gap:12px}
-  #mt{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:none;cursor:pointer;flex-shrink:0}
-  @media(min-width:768px){#mt{display:none}}
-  #tt{font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:600}
-  #ts{font-size:.73rem;color:var(--muted);margin-left:auto;white-space:nowrap}
-  #main{flex:1;padding:26px 18px 64px;max-width:900px;margin:0 auto;width:100%}
-  @media(min-width:768px){#main{padding:34px 34px 80px}}
-  .sec{display:none} .sec.on{display:block}
-
-  /* HERO */
-  .hero{border-radius:14px;margin-bottom:32px;background:linear-gradient(135deg,#1e3a8a 0%,#1e40af 55%,#2563eb 100%);padding:44px 38px;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
-  .hc{position:relative;z-index:2;max-width:560px}
-  .hey{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;padding:4px 12px;border-radius:99px;font-size:.73rem;font-weight:600;margin-bottom:12px}
-  .hero h1{font-family:'Poppins',sans-serif;font-size:2.1rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:9px}
-  .hero p{color:rgba(255,255,255,.85);font-size:.92rem;line-height:1.65;margin-bottom:18px}
-  .hmt{display:flex;gap:18px;flex-wrap:wrap}
-  .hst .n{font-family:'Poppins',sans-serif;font-size:1.7rem;font-weight:800;color:#fff;line-height:1}
-  .hst .l{font-size:.7rem;color:rgba(255,255,255,.75);margin-top:1px}
-
-  /* CARDS */
-  .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
-  .sc{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);cursor:pointer;transition:box-shadow .18s,transform .18s;border-left:4px solid transparent}
-  .sc:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
-  .sc.ct{border-left-color:#7c3aed} .sc.md{border-left-color:#0891b2} .sc.nf{border-left-color:var(--primary)} .sc.nc{border-left-color:var(--accent)} .sc.cm{border-left-color:var(--warning)}
-  .sct{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5px}
-  .sc h3{font-family:'Poppins',sans-serif;font-size:.85rem;font-weight:700}
-  .sc p{font-size:.78rem;color:var(--muted);line-height:1.5}
-
-  /* VTL */
-  .vtl{position:relative;padding-left:26px}
-  .vtl::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--primary),var(--accent));border-radius:2px}
-  .vi{position:relative;margin-bottom:18px}
-  .vd{position:absolute;left:-22px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--white);border:3px solid var(--primary-light)}
-  .vi.g .vd{border-color:var(--accent)} .vi.r .vd{border-color:var(--danger)} .vi.i .vd{border-color:var(--muted)}
-  .vdate{font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:600;color:var(--muted);margin-bottom:2px}
-  .vlbl{font-size:.86rem;font-weight:600;color:var(--text)}
-  .vlbl small{display:block;font-size:.76rem;font-weight:400;color:var(--muted);margin-top:2px}
-
-  /* SECTION HEADER */
-  .ph{margin-bottom:22px}
-  .ph h1{font-family:'Poppins',sans-serif;font-size:1.55rem;font-weight:800;color:var(--text);margin-bottom:4px}
-  .ph p{font-size:.87rem;color:var(--muted)}
-
-  /* ADJ CARD */
-  .ac{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
-  .at{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:16px;flex-wrap:wrap}
-  .at h3{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:3px}
-  .at .rf{font-size:.73rem;color:var(--muted);font-family:'IBM Plex Mono',monospace}
-  .badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.7rem;font-weight:700;letter-spacing:.3px;white-space:nowrap}
-  .ba{background:#dbeafe;color:#1d4ed8} .br{background:#fee2e2;color:#b91c1c} .bn{background:#dcfce7;color:#166534}
-  .vg{padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--border)}
-  .vgl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:3px}
-  .vgd{font-family:'IBM Plex Mono',monospace;font-size:.92rem;font-weight:700;color:var(--primary)}
-  .ad{font-size:.87rem;color:var(--text);line-height:1.7;margin-bottom:14px}
-  .ct2{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:9px}
-  .cl{list-style:none}
-  .cl li{display:flex;align-items:flex-start;gap:7px;font-size:.84rem;color:var(--text);margin-bottom:6px;line-height:1.55}
-  .cd{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px}
-  .imp{border-left:4px solid var(--accent);background:var(--accent-bg);border-radius:0 8px 8px 0;padding:11px 13px;margin-top:16px}
-  .imt{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#047857;margin-bottom:3px}
-  .imp p{font-size:.83rem;color:var(--text);line-height:1.6}
-
-  /* TL PAGE */
-  .tlg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px;margin-bottom:26px}
-  .tc{border-radius:var(--radius);padding:18px;border:1px solid}
-  .tc.i{background:#f8fafc;border-color:#e2e8f0} .tc.m{background:var(--primary-bg);border-color:#bfdbfe}
-  .tc.a{background:var(--accent-bg);border-color:#a7f3d0} .tc.o{background:var(--danger-bg);border-color:#fecaca}
-  .tc h3{font-family:'Poppins',sans-serif;font-size:.9rem;font-weight:800;margin-bottom:2px}
-  .tc.i h3{color:#334155} .tc.m h3{color:var(--primary)} .tc.a h3{color:#065f46} .tc.o h3{color:#b91c1c}
-  .tc .sb{font-size:.76rem;font-weight:600;color:var(--text);margin-bottom:8px}
-  .tc ul{list-style:none}
-  .tc ul li{font-size:.75rem;color:var(--muted);margin-bottom:3px;padding-left:11px;position:relative}
-  .tc ul li::before{content:'·';position:absolute;left:0}
-  .rc{background:var(--warning-bg);border:1px solid #fde68a;border-radius:var(--radius);padding:18px 20px}
-  .rc h3{font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:9px}
-  .rc ul{list-style:none}
-  .rc ul li{font-size:.84rem;color:var(--text);margin-bottom:5px;padding-left:15px;position:relative}
-  .rc ul li::before{content:'→';position:absolute;left:0;color:var(--warning);font-weight:700}
-
-  /* TABLE */
-  .tw{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow)}
-  table{width:100%;border-collapse:collapse;font-size:.81rem;background:var(--white)}
-  thead tr{background:var(--primary);color:#fff}
-  th{padding:10px 13px;text-align:left;font-family:'Poppins',sans-serif;font-size:.76rem;font-weight:700}
-  td{padding:9px 13px;border-top:1px solid var(--border)}
-  tr:nth-child(even) td{background:#fafafa}
-  td.mn{font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--muted)}
-
-  /* QA */
-  .qg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:9px}
-  .qb{text-align:left;padding:13px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;transition:all .18s;font-family:'Inter',sans-serif;display:flex;justify-content:space-between;align-items:flex-start;gap:7px}
-  .qb:hover{border-color:var(--primary);background:var(--primary-bg)}
-  .qi strong{display:block;font-size:.84rem;font-weight:600;color:var(--text);margin-bottom:1px}
-  .qi span{font-size:.76rem;color:var(--muted)}
-
-  .st{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 14px}
-  .st:first-child{margin-top:0}
-  footer{background:var(--white);border-top:1px solid var(--border);padding:16px 34px;text-align:center;font-size:.74rem;color:var(--muted)}
-  @media(max-width:500px){.hero{padding:28px 18px}.hero h1{font-size:1.65rem}#main{padding:16px 12px 48px}}
-</style>
+<title>Ajustes SINIEF 01 a 40/2026 — Portal Completo CONFAZ | Estudo DF-e</title>
+<meta name="description" content="Portal completo dos 40 Ajustes SINIEF 2026: Despachos 6,12,15,18,21,23,30,36 e 42/2026. NF-e, NFC-e, CT-e, MDF-e, BP-e, NF3e, NFCom, DC-e, gás. Fichas, quiz, cronograma.">
+<link rel="stylesheet" href="styles.css">
+<style>.vig{font-size:.8rem;color:#1d4ed8;font-weight:700}.timeline{display:grid;gap:10px;margin:14px 0}.tl{background:#fff;border:1px solid #e3e8f1;border-radius:12px;padding:12px 14px;color:#1c2a45}.tl strong{color:#1d4ed8}.foot-links a{color:#93a3bf;margin-right:12px}</style>
 </head>
 <body>
-
-<aside id="sidebar">
-  <div class="slogo">SINIEF 2026<small>Despacho CONFAZ nº 18 · 09/04/2026</small></div>
-  <nav>
-    <div class="ng">Visão Geral</div>
-    <button class="nb on" onclick="go('home',this)"><span class="ic">🏠</span> Início</button>
-    <button class="nb" onclick="go('timeline',this)"><span class="ic">📅</span> Cronograma</button>
-    <div class="ng">CT-e · MDF-e</div>
-    <button class="nb" onclick="go('s4',this)"><span class="ic">🚛</span> SINIEF 4/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s5',this)"><span class="ic">📦</span> SINIEF 5/2026 <span class="nt a">Alt</span></button>
-    <div class="ng">NF-e</div>
-    <button class="nb" onclick="go('s6',this)"><span class="ic">✏️</span> SINIEF 6/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s8',this)"><span class="ic">↩️</span> SINIEF 8/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s10',this)"><span class="ic">🖨️</span> SINIEF 10/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s11',this)"><span class="ic">⏱️</span> SINIEF 11/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s13',this)"><span class="ic">📄</span> SINIEF 13/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s14',this)"><span class="ic">🗂️</span> SINIEF 14/2026 <span class="nt a">Alt</span></button>
-    <div class="ng">NFC-e</div>
-    <button class="nb" onclick="go('s9',this)"><span class="ic">📍</span> SINIEF 9/2026 <span class="nt a">Alt</span></button>
-    <button class="nb" onclick="go('s12',this)"><span class="ic">❌</span> SINIEF 12/2026 <span class="nt r">Rev</span></button>
-    <div class="ng">NFCom</div>
-    <button class="nb" onclick="go('s7',this)"><span class="ic">📡</span> SINIEF 7/2026 <span class="nt a">Alt</span></button>
-  </nav>
-</aside>
-<div id="ov" onclick="closeSB()"></div>
-
-<div id="sh">
-  <header id="tb">
-    <button id="mt" onclick="toggleSB()">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
-    <div id="tt">Guia de Atualização Fiscal 2026</div>
-    <div id="ts">422ª Reunião Extraordinária · CONFAZ</div>
-  </header>
-
-  <main id="main">
-
-    <!-- HOME -->
-    <div id="section-home" class="sec on">
-      <div class="hero">
-        <div class="hc">
-          <div class="hey">📢 DOU 09/04/2026 · Despacho nº 18</div>
-          <h1>Ajustes SINIEF 2026</h1>
-          <p>11 ajustes aprovados na 422ª Reunião Extraordinária do CONFAZ em 06/04/2026. Mudanças em CT-e, MDF-e, NF-e, NFC-e e NFCom com vigências escalonadas.</p>
-          <div class="hmt">
-            <div class="hst"><div class="n">11</div><div class="l">Ajustes SINIEF</div></div>
-            <div class="hst"><div class="n">4</div><div class="l">Datas de vigência</div></div>
-            <div class="hst"><div class="n">5</div><div class="l">Tipos de documento</div></div>
-          </div>
-        </div>
-      </div>
-
-      <p class="st">Resumo por tipo de documento</p>
-      <div class="sg" style="margin-bottom:28px">
-        <div class="sc ct" onclick="go('s4',document.querySelector('[onclick*=s4]'))">
-          <div class="sct"><h3>CT-e</h3><span class="badge ba">1 ajuste</span></div>
-          <p>Correção de valores no CT-e Simplificado exclusivamente via CT-e de substituição.</p>
-        </div>
-        <div class="sc md" onclick="go('s5',document.querySelector('[onclick*=s5]'))">
-          <div class="sct"><h3>MDF-e</h3><span class="badge ba">1 ajuste</span></div>
-          <p>MDF-e distinto por unidade federada de descarregamento.</p>
-        </div>
-        <div class="sc nf" onclick="go('s6',document.querySelector('[onclick*=s6]'))">
-          <div class="sct"><h3>NF-e</h3><span class="badge ba">6 ajustes</span></div>
-          <p>Correção na entrega, devolução, DANFE Tipo 2, manifestação em 90 dias e vedação NF-e×NFC-e.</p>
-        </div>
-        <div class="sc nc" onclick="go('s9',document.querySelector('[onclick*=s9]'))">
-          <div class="sct"><h3>NFC-e</h3><span class="badge ba">2 ajustes</span></div>
-          <p>Endereço obrigatório em operações não presenciais. Revogação da proibição para CNPJ.</p>
-        </div>
-        <div class="sc cm" onclick="go('s7',document.querySelector('[onclick*=s7]'))">
-          <div class="sct"><h3>NFCom</h3><span class="badge ba">1 ajuste</span></div>
-          <p>Percentual reduzido para SP e MG nos meses de novembro e dezembro de 2025.</p>
-        </div>
-      </div>
-
-      <p class="st">Cronograma de vigências</p>
-      <div class="vtl" style="margin-bottom:28px">
-        <div class="vi i"><div class="vd"></div>
-          <div class="vdate">IMEDIATO · 09/04/2026</div>
-          <div class="vlbl">Ajustes 4, 5, 7, 9, 10, 11, 12, 13 — entram em vigor na publicação<small>Produção de efeitos: cada ajuste tem data própria</small></div>
-        </div>
-        <div class="vi"><div class="vd"></div>
-          <div class="vdate">01/06/2026</div>
-          <div class="vlbl">Ajustes 4, 5 e 6 — CT-e Simplificado, MDF-e por UF, correção NF-e 168h<small>1º dia do 2º mês subsequente à publicação</small></div>
-        </div>
-        <div class="vi g"><div class="vd"></div>
-          <div class="vdate">04/05/2026</div>
-          <div class="vlbl">Ajuste 8 — NF-e de entrada: recusa e não localização (novos códigos 03 e 06)</div>
-        </div>
-        <div class="vi g"><div class="vd"></div>
-          <div class="vdate">03/08/2026</div>
-          <div class="vlbl">Ajustes 9, 10, 13, 14 — Endereço NFC-e, DANFE Tipo 2, manifestação 90 dias<small>Múltiplos dispositivos com vigência unificada</small></div>
-        </div>
-        <div class="vi r"><div class="vd"></div>
-          <div class="vdate">05/10/2026</div>
-          <div class="vlbl">Ajuste 11 — Vedação de NF-e de saída referenciando NFC-e<small>Prorrogação do Ajuste SINIEF 32/2025</small></div>
-        </div>
-      </div>
-
-      <p class="st">Acesso rápido</p>
-      <div class="qg" style="margin-bottom:28px">
-        <button class="qb" onclick="go('s4',document.querySelector('[onclick*=s4]'))"><div class="qi"><strong>SINIEF 4/2026 · CT-e</strong><span>CT-e Simplificado — substituição em vez de complemento</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s5',document.querySelector('[onclick*=s5]'))"><div class="qi"><strong>SINIEF 5/2026 · MDF-e</strong><span>MDF-e por UF de descarregamento</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s6',document.querySelector('[onclick*=s6]'))"><div class="qi"><strong>SINIEF 6/2026 · NF-e</strong><span>Correção de erro no ato da entrega — 168h</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s7',document.querySelector('[onclick*=s7]'))"><div class="qi"><strong>SINIEF 7/2026 · NFCom</strong><span>Percentual reduzido SP e MG (nov-dez 2025)</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s8',document.querySelector('[onclick*=s8]'))"><div class="qi"><strong>SINIEF 8/2026 · NF-e</strong><span>NF-e de entrada — recusa e não localização</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s9',document.querySelector('[onclick*=s9]'))"><div class="qi"><strong>SINIEF 9/2026 · NFC-e</strong><span>Endereço obrigatório — operações não presenciais</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s10',document.querySelector('[onclick*=s10]'))"><div class="qi"><strong>SINIEF 10/2026 · NF-e</strong><span>DANFE Simplificado Tipo 2 — apresentação eletrônica</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s11',document.querySelector('[onclick*=s11]'))"><div class="qi"><strong>SINIEF 11/2026 · NF-e</strong><span>Prazo vedação NF-e × NFC-e → 05/10/2026</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s12',document.querySelector('[onclick*=s12]'))"><div class="qi"><strong>SINIEF 12/2026 · NFC-e</strong><span>Revogação total do SINIEF 11/2025</span></div><span class="badge br">Rev</span></button>
-        <button class="qb" onclick="go('s13',document.querySelector('[onclick*=s13]'))"><div class="qi"><strong>SINIEF 13/2026 · NF-e</strong><span>DANFE Simplificado Tipo 2 em operações de varejo</span></div><span class="badge ba">Alt</span></button>
-        <button class="qb" onclick="go('s14',document.querySelector('[onclick*=s14]'))"><div class="qi"><strong>SINIEF 14/2026 · NF-e</strong><span>Manifestação do destinatário — prazo 90 dias</span></div><span class="badge ba">Alt</span></button>
-      </div>
-    </div>
-
-    <!-- TIMELINE -->
-    <div id="section-timeline" class="sec">
-      <div class="ph"><h1>Cronograma de Vigência</h1><p>Datas críticas dos Ajustes SINIEF — Despacho CONFAZ nº 18/2026</p></div>
-      <div class="tlg">
-        <div class="tc i"><h3>09/04/2026</h3><div class="sb">Vigência imediata</div><ul><li>SINIEF 4 · CT-e Simpl. (ef. 01/06)</li><li>SINIEF 5 · MDF-e por UF (ef. 01/06)</li><li>SINIEF 7 · NFCom SP e MG</li><li>SINIEF 11 · Prorrogação 05/10</li><li>SINIEF 12 · Revogação SINIEF 11/25</li></ul></div>
-        <div class="tc m"><h3>04/05/2026</h3><div class="sb">NF-e de Entrada</div><ul><li>Novos códigos 03 e 06</li><li>Recusa total, parcial e não localização</li><li>Dados do destinatário original</li><li>SINIEF 8/2026</li></ul></div>
-        <div class="tc a"><h3>03/08/2026</h3><div class="sb">DANFE · NFC-e · Manifestação</div><ul><li>DANFE Tipo 2 eletrônico (SINIEF 10 e 13)</li><li>Endereço não presencial (SINIEF 9)</li><li>Manifestação 90 dias (SINIEF 14)</li><li>Efeitos SINIEF 6 (168h correção)</li></ul></div>
-        <div class="tc o"><h3>05/10/2026</h3><div class="sb">Vedação NF-e × NFC-e</div><ul><li>NF-e saída não pode referenciar NFC-e</li><li>Exceção: NF-e complementar</li><li>SINIEF 11/2026</li></ul></div>
-      </div>
-      <p class="st">Recomendações de Planejamento</p>
-      <div class="rc" style="margin-bottom:26px">
-        <h3>⚠️ Checklist de Conformidade</h3>
-        <ul>
-          <li><strong>Imediato:</strong> Bloquear CT-e de complemento de valores no CT-e Simplificado; configurar MDF-e por UF</li>
-          <li><strong>Até 04/05/2026:</strong> Implementar NF-e de entrada com códigos 03 e 06 para recusa/não localização</li>
-          <li><strong>Até 01/06/2026:</strong> Habilitar prazo de 168h e nota de crédito "Redução de valores" para correção de NF-e na entrega</li>
-          <li><strong>Até 03/08/2026:</strong> DANFE Simplificado Tipo 2 eletrônico; endereço obrigatório em vendas não presenciais por NFC-e; rotina de confirmação automática após 90 dias</li>
-          <li><strong>Até 05/10/2026:</strong> Eliminar emissão de NF-e de saída referenciando NFC-e nos sistemas</li>
-        </ul>
-      </div>
-      <p class="st">Tabela-Resumo dos 11 Ajustes</p>
-      <div class="tw">
-        <table>
-          <thead><tr><th>Ajuste</th><th>Altera / Revoga</th><th>Documento</th><th>Status</th><th>Vigência / Efeitos</th></tr></thead>
-          <tbody>
-            <tr><td><strong>SINIEF 4/2026</strong></td><td class="mn">SINIEF 9/2007</td><td>CT-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 01/06/2026</td></tr>
-            <tr><td><strong>SINIEF 5/2026</strong></td><td class="mn">SINIEF 21/2010</td><td>MDF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 01/06/2026</td></tr>
-            <tr><td><strong>SINIEF 6/2026</strong></td><td class="mn">SINIEF 13/2024</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 01/06/2026</td></tr>
-            <tr><td><strong>SINIEF 7/2026</strong></td><td class="mn">SINIEF 7/2022</td><td>NFCom mod. 62</td><td><span class="badge ba">Alt</span></td><td>Imediata 09/04/2026</td></tr>
-            <tr><td><strong>SINIEF 8/2026</strong></td><td class="mn">SINIEF 49/2025</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 04/05/2026</td></tr>
-            <tr><td><strong>SINIEF 9/2026</strong></td><td class="mn">SINIEF 19/2016</td><td>NFC-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 03/08/2026</td></tr>
-            <tr><td><strong>SINIEF 10/2026</strong></td><td class="mn">SINIEF 13/2025</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 03/08/2026</td></tr>
-            <tr><td><strong>SINIEF 11/2026</strong></td><td class="mn">SINIEF 32/2025</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 05/10/2026</td></tr>
-            <tr><td><strong>SINIEF 12/2026</strong></td><td class="mn">SINIEF 11/2025</td><td>NFC-e</td><td><span class="badge br">Rev</span></td><td>Imediata 09/04/2026</td></tr>
-            <tr><td><strong>SINIEF 13/2026</strong></td><td class="mn">SINIEF 12/2025</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Efeitos 03/08/2026</td></tr>
-            <tr><td><strong>SINIEF 14/2026</strong></td><td class="mn">SINIEF 7/2005</td><td>NF-e</td><td><span class="badge ba">Alt</span></td><td>Parcial: 01/06 e 03/08/2026</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- SINIEF 4 -->
-    <div id="section-s4" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 4/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 9/2007 · CT-e Simplificado: vedação ao CT-e complementar de valores</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Correção de Valores no CT-e Simplificado</h3><div class="rf">SINIEF 4/2026 → altera SINIEF 9/2007 (CT-e)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">1º de junho de 2026</div></div>
-        <p class="ad">Acrescenta os §§ 3º e 4º à cláusula terceira-B do SINIEF 9/2007. O § 3º veda o CT-e de complemento de valores no CT-e Simplificado: qualquer correção de valor informado a menor deve ser feita exclusivamente por CT-e de substituição, comprovado o erro conforme exigência de cada UF e desde que não descaracterize a prestação do serviço. O § 4º dispensa o registro do evento do inciso XV do § 1º da cláusula 18-A nesses casos.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Correção de valores a menor no CT-e Simplificado: obrigatório <strong>CT-e de substituição</strong></li>
-          <li><span class="cd"></span>CT-e de complemento de valores <strong>expressamente vedado</strong></li>
-          <li><span class="cd"></span>Substituição exige erro comprovado e não pode descaracterizar a prestação</li>
-          <li><span class="cd"></span>Dispensado o registro do evento do inciso XV do § 1º da cláusula 18-A</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Transportadoras devem bloquear a geração de CT-e de complemento no CT-e Simplificado. A partir de 01/06/2026, apenas o CT-e de substituição é admitido para correção de valores indicados a menor.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 5 -->
-    <div id="section-s5" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 5/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 21/2010 · MDF-e por unidade federada de descarregamento</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Emissão de MDF-e Distinto por UF de Descarregamento</h3><div class="rf">SINIEF 5/2026 → altera SINIEF 21/2010 (MDF-e)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">1º de junho de 2026</div></div>
-        <p class="ad">Altera o § 2º da cláusula terceira do SINIEF 21/2010. A nova redação determina que deve ser emitido um MDF-e distinto para cada UF de descarregamento, agregando em cada manifesto os documentos das cargas a serem descarregadas naquele estado.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Obrigatoriedade de <strong>MDF-e distinto por UF de descarregamento</strong></li>
-          <li><span class="cd"></span>Cada manifesto reúne apenas os documentos das cargas daquela UF</li>
-          <li><span class="cd"></span>Impacto direto em operações logísticas com entrega em múltiplos estados</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Transportadoras com rotas multiestados devem rever a parametrização do sistema emissor de MDF-e. A partir de 01/06/2026, um único MDF-e não poderá agregar cargas de diferentes UFs de descarregamento.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 6 -->
-    <div id="section-s6" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 6/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 13/2024 · Correção de NF-e no ato da entrega — prazo de 168 horas</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Correção de NF-e no Ato da Entrega — 168 Horas</h3><div class="rf">SINIEF 6/2026 → altera SINIEF 13/2024</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">1º de junho de 2026</div></div>
-        <p class="ad">Altera o Ajuste SINIEF 13/2024, que disciplina a correção de erros na NF-e no ato da entrega quando não é possível emitir nota complementar, CC-e ou nota de crédito. A ementa é atualizada para incluir a nota de crédito do tipo "Redução de valores". O prazo fica fixado em até 168 horas do ato da entrega, em operações internas e interestaduais, sem circulação de mercadoria decorrente da correção. Acrescentado § 2º: alterações de valores/quantidades devem usar nota complementar ou nota de crédito "Redução de valores" (SINIEF 49/2025, cláusula 1ª, inciso III). Parágrafo único renumerado para § 1º.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Prazo: até <strong>168 horas (7 dias)</strong> do ato da entrega</li>
-          <li><span class="cd"></span>Aplicável a operações internas <strong>e interestaduais</strong></li>
-          <li><span class="cd"></span>Nota de crédito "Redução de valores" incluída nos instrumentos que, quando inviáveis, autorizam o procedimento</li>
-          <li><span class="cd"></span>Alteração de valores/quantidades → nota complementar ou nota de crédito "Redução de valores"</li>
-          <li><span class="cd"></span>Parágrafo único → § 1º; acrescido § 2º</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Remetentes em operações interestaduais agora também contam com a janela de 168h. Sistemas devem contemplar a nota de crédito "Redução de valores" conforme o SINIEF 49/2025.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 7 -->
-    <div id="section-s7" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 7/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 7/2022 · NFCom modelo 62: percentual reduzido para SP e MG</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>NFCom — Percentual Diferenciado para SP e MG (nov-dez 2025)</h3><div class="rf">SINIEF 7/2026 → altera SINIEF 7/2022 (NFCom mod. 62)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência</div><div class="vgd">Imediata — 09/04/2026</div></div>
-        <p class="ad">Altera o § 6º da cláusula primeira do SINIEF 7/2022 (NFCom, modelo 62). A nova redação permite que o percentual do inciso I do § 5º da mesma cláusula seja inferior para contribuintes dos Estados de São Paulo e Minas Gerais nos meses de novembro a dezembro de 2025.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Percentual do § 5º, inciso I pode ser <strong>inferior</strong> para SP e MG</li>
-          <li><span class="cd"></span>Período: <strong>novembro e dezembro de 2025</strong></li>
-          <li><span class="cd"></span>Vigência imediata (publicação 09/04/2026)</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Contribuintes de SP e MG com NFCom (modelo 62) podem aplicar percentual reduzido de faturamento para nov-dez/2025, conforme parametrização específica.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 8 -->
-    <div id="section-s8" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 8/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 49/2025 · NF-e de entrada: recusa e não localização do destinatário</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>NF-e de Entrada — Recusa Total, Parcial e Não Localização</h3><div class="rf">SINIEF 8/2026 → altera cláusula quinta do SINIEF 49/2025</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">4 de maio de 2026</div></div>
-        <p class="ad">Altera a cláusula quinta do SINIEF 49/2025. O remetente da NF-e de saída original passa a ser obrigado a emitir NF-e de entrada nas hipóteses de recusa ou não localização do destinatário (inciso IV da cláusula primeira do SINIEF 49/2025). O ajuste padroniza informações, códigos de crédito e referenciamento exigidos.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>NF-e de entrada obrigatória pelo <strong>remetente</strong> nas hipóteses de recusa e não localização</li>
-          <li><span class="cd"></span>Novos códigos de crédito: <strong>03</strong> (Retorno por Recusa Total / Não Localização) e <strong>06</strong> (Retorno por Recusa Parcial)</li>
-          <li><span class="cd"></span>Incisos IV e V: informações dos itens recusados e referenciamento por tipo (total, parcial, não localização)</li>
-          <li><span class="cd"></span>Inciso VII acrescido: <strong>dados do destinatário da NF-e de saída original</strong> obrigatórios na NF-e de entrada</li>
-          <li><span class="cd"></span>§ 1º da cláusula quinta <strong>revogado</strong></li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Sistemas emissores devem ser atualizados para gerar NF-e de entrada com os novos códigos 03 e 06, referenciar a NF-e de saída e incluir os dados do destinatário. Vigência: 04/05/2026.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 9 -->
-    <div id="section-s9" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 9/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 19/2016 · NFC-e: endereço obrigatório em operações não presenciais</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Endereço Obrigatório em Todas as Operações Não Presenciais (NFC-e)</h3><div class="rf">SINIEF 9/2026 → altera alínea "c" do inciso VII da cláusula quarta do SINIEF 19/2016</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">3 de agosto de 2026</div></div>
-        <p class="ad">Antes, o endereço na NFC-e era exigido apenas para entregas em domicílio. Com a nova redação, todas as operações não presenciais passam a exigir a informação do respectivo endereço, independentemente da modalidade de entrega.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Endereço obrigatório para <strong>todas</strong> as operações não presenciais na NFC-e</li>
-          <li><span class="cd"></span>Abrange e-commerce, aplicativos, telefone e demais canais remotos</li>
-          <li><span class="cd"></span>Obrigatoriedade independente da forma de entrega</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Sistemas de PDV, e-commerce e aplicativos que emitem NFC-e em operações não presenciais devem capturar e validar o endereço completo do comprador antes de 03/08/2026. Ausência de endereço pode resultar em rejeição do documento.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 10 -->
-    <div id="section-s10" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 10/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 13/2025 · DANFE Simplificado Tipo 2: apresentação em meio eletrônico</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>DANFE Simplificado – Tipo 2 Pode Ser Apresentado Eletronicamente</h3><div class="rf">SINIEF 10/2026 → altera SINIEF 13/2025 (que altera SINIEF 7/2005)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">3 de agosto de 2026</div></div>
-        <p class="ad">Altera o inciso II da cláusula segunda do SINIEF 13/2025 para prever que o DANFE Simplificado – Tipo 2, nas operações do § 5º-D da cláusula nona do SINIEF 7/2005, pode ser apresentado em <strong>meio eletrônico</strong> como alternativa à impressão em papel. Exceção: contingência ou solicitação do adquirente. Fixa a vigência a partir de 03/08/2026.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>DANFE Simplificado – Tipo 2 admite <strong>apresentação eletrônica</strong></li>
-          <li><span class="cd"></span>Exceção: em contingência ou quando o adquirente solicitar via impressa</li>
-          <li><span class="cd"></span>Vigência: 03/08/2026</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Varejistas que operam NF-e em substituição à NFC-e (§ 5º-D) poderão disponibilizar o DANFE Tipo 2 digitalmente ao consumidor, salvo em contingência ou a pedido do adquirente.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 11 -->
-    <div id="section-s11" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 11/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 32/2025 · Prorrogação da vedação de NF-e referenciando NFC-e para 05/10/2026</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Vedação de NF-e de Saída Referenciando NFC-e — Novo Prazo</h3><div class="rf">SINIEF 11/2026 → altera SINIEF 32/2025 (que altera SINIEF 7/2005)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Efeitos da regra vedada</div><div class="vgd">5 de outubro de 2026</div></div>
-        <p class="ad">Posterga a vigência do inciso I da cláusula primeira do SINIEF 32/2025 para 05/10/2026. O inciso I proíbe a emissão de NF-e de saída que referencie uma NFC-e (prática usada em alguns estados para "faturar" cupons emitidos anteriormente). A única exceção mantida é a NF-e complementar referenciando NFC-e.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Prorrogação para <strong>05/10/2026</strong></li>
-          <li><span class="cd"></span>A partir da nova data: NF-e de saída <strong>não poderá</strong> referenciar NFC-e</li>
-          <li><span class="cd"></span>Exceção mantida: NF-e complementar pode referenciar NFC-e</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Empresas que emitem NF-e de saída referenciando NFC-e ganham mais tempo de adequação. ERPs e emissores devem bloquear essa prática antes de 05/10/2026.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 12 -->
-    <div id="section-s12" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 12/2026 <span class="badge br" style="vertical-align:middle;margin-left:7px">Revogado</span></h1><p>Revoga integralmente o SINIEF 11/2025 · NFC-e para destinatários CNPJ mantida</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Revogação Total do SINIEF 11/2025 — NFC-e para CNPJ Mantida</h3><div class="rf">SINIEF 12/2026 → revoga SINIEF 11/2025 (que havia alterado SINIEF 19/2016)</div></div><span class="badge br">Revogado</span></div>
-        <div class="vg"><div class="vgl">Vigência</div><div class="vgd">Imediata — 09/04/2026</div></div>
-        <p class="ad">Revoga integralmente o SINIEF 11/2025 (DOU 30/04/2025), que havia alterado o SINIEF 19/2016 para proibir a emissão de NFC-e (modelo 65) em vendas para destinatários com CNPJ. Com a revogação, essa proibição deixa de existir: as empresas podem continuar utilizando a NFC-e em operações com CNPJ.</p>
-        <div class="ct2">Efeito da revogação</div>
-        <ul class="cl">
-          <li><span class="cd"></span>NFC-e pode ser utilizada em vendas para <strong>destinatários com CNPJ</strong> (mantido)</li>
-          <li><span class="cd"></span>A proibição do SINIEF 11/2025 <strong>não vigora</strong></li>
-          <li><span class="cd"></span>Flexibilidade de escolha entre NF-e e NFC-e preservada</li>
-          <li><span class="cd"></span>Respeitar normas estaduais específicas que porventura existam</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Alívio operacional para o varejo. Não há necessidade de mudança nos sistemas. Empresas podem continuar emitindo NFC-e para compradores com CNPJ, observadas eventuais normas estaduais.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 13 -->
-    <div id="section-s13" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 13/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 12/2025 · DANFE Simplificado Tipo 2 em operações de varejo com NF-e</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Criação do DANFE Simplificado – Tipo 2 para NF-e em Varejo</h3><div class="rf">SINIEF 13/2026 → altera SINIEF 12/2025 (NF-e)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">3 de agosto de 2026</div></div>
-        <p class="ad">Altera o SINIEF 12/2025, reformulando o § 5º-D da cláusula nona do SINIEF 7/2005. O contribuinte que optar pela emissão de NF-e em operações típicas de NFC-e pode imprimir o DANFE conforme o § 2º da cláusula décima do SINIEF 19/2016, denominando-o "DANFE Simplificado – Tipo 2", observadas as definições do MOC. O § 5º-D também é incluído nas hipóteses de geração prévia em contingência com autorização posterior. Revogado o inciso I da cláusula primeira do SINIEF 12/2025; vigência fixada em 03/08/2026.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>NF-e em operações típicas de varejo pode usar <strong>DANFE Simplificado – Tipo 2</strong></li>
-          <li><span class="cd"></span>Formato segue as definições do MOC e o § 2º da cláusula 10 do SINIEF 19/2016</li>
-          <li><span class="cd"></span>§ 5º-D incluído nas hipóteses de <strong>contingência com autorização posterior</strong></li>
-          <li><span class="cd"></span>Inciso I da cláusula primeira do SINIEF 12/2025 <strong>revogado</strong></li>
-          <li><span class="cd"></span>Vigência: 03/08/2026</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>Varejistas com NF-e em substituição à NFC-e ganham um formato auxiliar mais enxuto (Tipo 2), compatível com contingência. Sistemas emissores devem implementar o novo formato conforme o MOC antes de 03/08/2026.</p></div>
-      </div>
-    </div>
-
-    <!-- SINIEF 14 -->
-    <div id="section-s14" class="sec">
-      <div class="ph"><h1>Ajuste SINIEF 14/2026 <span class="badge ba" style="vertical-align:middle;margin-left:7px">Alterado</span></h1><p>Altera SINIEF 7/2005 · Manifestação do destinatário em 90 dias, DANFE e Tipo 2 em contingência</p></div>
-      <div class="ac">
-        <div class="at"><div><h3>Manifestação do Destinatário — Prazo Reduzido para 90 Dias</h3><div class="rf">SINIEF 14/2026 → altera diretamente SINIEF 7/2005 (NF-e)</div></div><span class="badge ba">Alterado</span></div>
-        <div class="vg"><div class="vgl">Vigência / Efeitos</div><div class="vgd">Inciso II: 1º/06/2026 · Demais dispositivos: 3/08/2026</div></div>
-        <p class="ad">Altera diretamente o SINIEF 7/2005, trazendo quatro grupos de mudanças: (1) prazo de manifestação do destinatário reduzido de 180 para 90 dias; (2) confirmação automática após 90 dias sem evento; (3) renomeação do DANFE de venda fora do estabelecimento e do DANFE Etiqueta; (4) obrigação de segunda via do DANFE Simplificado Tipo 2 emitido em contingência.</p>
-        <div class="ct2">Principais alterações</div>
-        <ul class="cl">
-          <li><span class="cd"></span>Prazo de manifestação: de 180 para <strong>90 dias</strong> a partir da autorização da NF-e</li>
-          <li><span class="cd"></span>Após 90 dias sem evento: operação <strong>automaticamente confirmada</strong></li>
-          <li><span class="cd"></span>DANFE de venda fora do estabelecimento (§ 5º-A) → renomeado <strong>"DANFE Simplificado"</strong></li>
-          <li><span class="cd"></span>DANFE Etiqueta (§ 15) → renomeado <strong>"DANFE Simplificado – Etiqueta"</strong></li>
-          <li><span class="cd"></span>§ 18 acrescido: DANFE Simplificado Tipo 2 em contingência → <strong>segunda via obrigatória</strong> até autorização da NF-e</li>
-          <li><span class="cd"></span>Inciso II (renomeação): efeitos 01/06/2026 · Demais: 03/08/2026</li>
-        </ul>
-        <div class="imp"><div class="imt">⚡ Impacto Prático</div><p>A redução de 180 para 90 dias exige que os destinatários confirmem, desconheçam ou registrem "operação não realizada" mais rapidamente. Sistemas de compras devem gerar alertas automáticos para o novo prazo. A confirmação automática aos 90 dias reduz NF-es pendentes nas SEFAZs, mas pode confirmar operações inadvertidamente se o processo não estiver mapeado.</p></div>
-      </div>
-    </div>
-
-  </main>
-
-  <footer>
-    Ajustes SINIEF 2026 — Despacho CONFAZ nº 18, de 08/04/2026 · DOU 09/04/2026 · 422ª Reunião Extraordinária &nbsp;|&nbsp; Consulte sempre o texto oficial no DOU e no CONFAZ
-  </footer>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<header class="topbar">
+<div class="wrap topbar-inner">
+<div class="brand"><span class="brand-badge">SINIEF 2026</span><div><strong>Portal Completo 01 a 40/2026 · CONFAZ</strong><small>Despachos 6 · 12 · 15 · 18 · 21 · 23 · 30 · 36 · 42/2026</small></div></div>
+<nav class="nav" aria-label="Navegação"><a href="#inicio">Início</a><a href="#ajustes">Ajustes</a><a href="#cronograma">Vigências</a><a href="#comparativo">Comparativo</a><a href="#quiz">Quiz</a><a href="#fontes">Fontes</a></nav>
+<div class="top-actions"><button id="themeBtn" class="btn ghost">◐ Tema</button><button id="printBtn" class="btn ghost">⎙ PDF</button></div>
 </div>
-
-<script>
-  const secs=['home','timeline','s4','s5','s6','s7','s8','s9','s10','s11','s12','s13','s14'];
-  function go(id,btn){
-    secs.forEach(s=>document.getElementById('section-'+s).classList.remove('on'));
-    document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));
-    document.getElementById('section-'+id).classList.add('on');
-    const nb=document.querySelector(`.nb[onclick*="'${id}'"]`);
-    if(nb)nb.classList.add('on');
-    window.scrollTo({top:0,behavior:'smooth'});
-    closeSB();
-  }
-  function toggleSB(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('ov').classList.toggle('show')}
-  function closeSB(){document.getElementById('sidebar').classList.remove('open');document.getElementById('ov').classList.remove('show')}
-</script>
+<div class="progress-line"><div id="progressLine" style="width:0%"></div></div>
+</header>
+<main id="conteudo">
+<section id="inicio" class="hero wrap">
+<div class="hero-grid">
+<div>
+<p class="kicker">Material didático · DF-e · 2026 completo e atualizado</p>
+<h1>Ajustes SINIEF <span class="hl">01 a 40/2026</span></h1>
+<p class="lead">Os <strong>40 ajustes do ano</strong>: do gás natural (01) e calamidade MG (02) ao pacote de setembro (28-40). NF-e, NFC-e, CT-e, MDF-e, BP-e, GTV-e, NF3e, NFCom, DC-e, PAA e armazenagem rural — com <strong>vigências corrigidas</strong> (ex: vedação NF-e×NFC-e em 14/12/2026, não mais 05/10).</p>
+<div class="hero-cta"><a class="btn primary" href="#ajustes">Estudar os 40 →</a><a class="btn" href="#cronograma">Ver cronograma</a></div>
+<div class="stats" role="list"><div role="listitem"><strong>40</strong><span>ajustes</span></div><div role="listitem"><strong>9</strong><span>despachos</span></div><div role="listitem"><strong>10+</strong><span>DF-e</span></div><div role="listitem"><strong id="statStudied">0/40</strong><span>estudados</span></div></div>
+</div>
+<aside class="hero-card"><h2>Cobertura 2026</h2>
+<dl><div><dt>Jan</dt><dd>01/26 (Desp.6) gás-RJ</dd></div><div><dt>Mar-Abr</dt><dd>02,03 + 04 a 14 (Desp.12,15,18)</dd></div><div><dt>Abr-Maio</dt><dd>15,16 (Desp.21,23)</dd></div><div><dt>Jul</dt><dd>17 a 26 (Desp.30)</dd></div><div><dt>Ago-Set</dt><dd>27 (Desp.36) + 28 a 40 (Desp.42)</dd></div></dl>
+<p class="warn">⚠️ <strong>Didático.</strong> Sempre confira texto oficial em confaz.fazenda.gov.br e DOU. Vigências por ajuste.</p>
+<div class="study-bar"><div class="study-bar-head"><span>Progresso</span><span id="progressPct">0%</span></div><div class="bar"><div id="progressBar" style="width:0%"></div></div><div class="study-bar-actions"><button class="btn small" id="resetProgress">Limpar</button><button class="btn small" id="markAll">Marcar todos</button></div></div>
+</aside>
+</div>
+</section>
+<section id="cronograma" class="wrap">
+<h2 class="section-title">Cronograma de vigências (resumo)</h2>
+<div class="timeline">
+<div class="tl"><strong>05/02/2026</strong> — Desp.6 publica 01/26 · efeitos 04/05/26</div>
+<div class="tl"><strong>11/03/2026</strong> — Desp.12 publica 02/26 · dispensa MG até 30/06/26</div>
+<div class="tl"><strong>02/04/2026</strong> — Desp.15 publica 03/26 CIOT · efeitos 01/06/26</div>
+<div class="tl"><strong>09/04/2026</strong> — Desp.18 publica 04-14 · efeitos 04/05, 01/06, 03/08, 05/10 (11 alterado depois)</div>
+<div class="tl"><strong>30/04/2026</strong> — Desp.21 publica 15/26 · 49/2025 para 03/08/26</div>
+<div class="tl"><strong>09/07/2026</strong> — Desp.30 publica 17-26 · destaque 23/26 NF-e×crédito em 05/10/26</div>
+<div class="tl"><strong>12/08/2026</strong> — Desp.36 publica 27/26</div>
+<div class="tl"><strong>14/09/2026</strong> — Desp.42 publica 28-40 · 01/11/26 regra geral; 37 retroage 01/09, 39 retroage 01/08, 36 parcial 05/10, <strong>29 leva vedação para 14/12/26</strong>, 34 na publicação</div>
+</div>
+</section>
+<section id="ajustes" class="wrap">
+<h2 class="section-title">Ler por ajuste (01 a 40)</h2>
+<p class="muted">Busque por número, sigla ou tema. Clique para abrir a ficha com link oficial CONFAZ.</p>
+<div class="toolbar"><input id="search" type="search" placeholder="Buscar 01..40, NF-e, CT-e, MDF-e, gás, CIOT…" aria-label="Buscar"><div class="chips" role="group" aria-label="Filtrar"><button class="chip active" data-filter="todos">Todos (40)</button><button class="chip" data-filter="nfe">NF-e</button><button class="chip" data-filter="transporte">Transporte</button><button class="chip" data-filter="varejo">Varejo/NFC-e</button><button class="chip" data-filter="energia">Energia/Gás/Comunicação</button><button class="chip" data-filter="especiais">Especiais/Agro</button><button class="chip" data-filter="fisco">Fisco</button></div></div>
+<div id="grid" class="grid"></div>
+</section>
+<section class="wrap"><h2 class="section-title">Fichas completas</h2><div id="details"></div></section>
+<section id="comparativo" class="wrap"><h2 class="section-title">Comparativo 01-40</h2><div class="table-wrap"><table><thead><tr><th>Aj.</th><th>Tema</th><th>Vigência</th><th>Memo</th></tr></thead><tbody>
+<tr><td>01</td><td>NF-e gás-RJ</td><td>04/05/26</td><td>RFB→RJ 2711.21.00</td></tr>
+<tr><td>02</td><td>Doação MG</td><td>até 30/06/26</td><td>sem fiscal, só declaração</td></tr>
+<tr><td>03</td><td>CIOT MDF-e</td><td>01/06/26</td><td>sem CIOT sem MDF-e</td></tr>
+<tr><td>04</td><td>CT-e Simplificado</td><td>01/06/26</td><td>só substituição</td></tr>
+<tr><td>05</td><td>MDF-e por UF</td><td>01/06/26</td><td>1 UF 1 MDF-e</td></tr>
+<tr><td>06</td><td>Correção 168h</td><td>01/06/26</td><td>7 dias entrega</td></tr>
+<tr><td>07</td><td>NFCom SP/MG</td><td>09/04/26</td><td>% menor fim-25</td></tr>
+<tr><td>08</td><td>Entrada 03/06</td><td>04/05/26</td><td>recusa 03/06</td></tr>
+<tr><td>09</td><td>NFC-e endereço</td><td>03/08/26</td><td>não presencial c/ endereço</td></tr>
+<tr><td>10</td><td>Tipo 2 eletrônico</td><td>03/08/26</td><td>digital vale</td></tr>
+<tr><td>11</td><td>Vedação (origem)</td><td>ver 29</td><td>vai p/ dez</td></tr>
+<tr><td>12</td><td>NFC-e CNPJ ok</td><td>09/04/26</td><td>pode CNPJ</td></tr>
+<tr><td>13</td><td>Tipo 2 varejo</td><td>03/08/26</td><td>balcão Tipo 2</td></tr>
+<tr><td>14</td><td>Manifestação 90d</td><td>01/06+03/08</td><td>90 ou confirma</td></tr>
+<tr><td>15</td><td>49/2025 adia</td><td>03/08/26</td><td>fôlego</td></tr>
+<tr><td>16</td><td>NF-gás 76</td><td>Desp.23</td><td>calibra gás</td></tr>
+<tr><td>17</td><td>Assistência técnica</td><td>Desp.30</td><td>técnico c/ NF-e</td></tr>
+<tr><td>18</td><td>Agrotóxico RS fora</td><td>Desp.30</td><td>RS fora</td></tr>
+<tr><td>19</td><td>Gás gasoduto</td><td>Desp.30</td><td>duto tem regra</td></tr>
+<tr><td>20</td><td>49/2025 emite</td><td>Desp.30</td><td>calibra</td></tr>
+<tr><td>21</td><td>PAA</td><td>Desp.30</td><td>assina via PAA</td></tr>
+<tr><td>22</td><td>NF-gás bis</td><td>Desp.30</td><td>gás de novo</td></tr>
+<tr><td>23</td><td>NF-e p/ crédito</td><td>05/10/26</td><td>quer crédito peça 55</td></tr>
+<tr><td>24</td><td>CT-e OS</td><td>Desp.30</td><td>OS ajusta</td></tr>
+<tr><td>25</td><td>NF-e geral</td><td>Desp.30</td><td>manutenção</td></tr>
+<tr><td>26</td><td>CT-e geral</td><td>Desp.30</td><td>manutenção</td></tr>
+<tr><td>27</td><td>49/2025 ponte</td><td>Desp.36</td><td>ponte</td></tr>
+<tr><td>28</td><td>Compartilhado 5905</td><td>01/11/26</td><td>vai volta vende</td></tr>
+<tr><td>29</td><td>Vedação 14/12</td><td>14/12/26</td><td>dezembro</td></tr>
+<tr><td>30</td><td>BP-e MOC</td><td>01/11/26</td><td>MOC</td></tr>
+<tr><td>31</td><td>GTV-e MOC</td><td>01/11/26</td><td>MOC-CT-e</td></tr>
+<tr><td>32</td><td>MDF-e MOC</td><td>01/11/26</td><td>MOC</td></tr>
+<tr><td>33</td><td>NF3e MOC</td><td>01/11/26</td><td>MOC</td></tr>
+<tr><td>34</td><td>Recusa crédito/débito</td><td>publicação</td><td>quem recusa define</td></tr>
+<tr><td>35</td><td>DC-e dispensa</td><td>01/11/26</td><td>só se precisa</td></tr>
+<tr><td>36</td><td>CT-e rejeitado</td><td>05/10+01/11</td><td>roteiro</td></tr>
+<tr><td>37</td><td>OS rejeitado retro</td><td>01/09+01/11</td><td>retro set</td></tr>
+<tr><td>38</td><td>NFC-e sem inutilizar</td><td>01/11/26</td><td>AC BA SP</td></tr>
+<tr><td>39</td><td>NFCom 80%</td><td>01/08+01/11</td><td>80% ganha prazo</td></tr>
+<tr><td>40</td><td>NF-e sem inutilizar</td><td>01/11/26</td><td>AC BA SP</td></tr>
+</tbody></table></div></section>
+<section id="quiz" class="wrap"><h2 class="section-title">Quiz — 40 perguntas</h2><p class="muted">1 por ajuste. Salvo no navegador.</p><div class="quiz-head"><div class="bar"><div id="quizBar" style="width:0%"></div></div><p><span id="quizScore">0</span> / <span id="quizTotal">40</span></p><button class="btn small" id="quizReset">Reiniciar</button></div><div id="quizList"></div></section>
+<section class="wrap two-col"><div><h2 class="section-title">Glossário</h2><dl class="gloss"><div><dt>NF-e 55</dt><dd>Mercadorias.</dd></div><div><dt>NFC-e 65</dt><dd>Varejo consumidor.</dd></div><div><dt>CT-e 57 / OS 67</dt><dd>Carga / outros serviços.</dd></div><div><dt>MDF-e 58</dt><dd>Manifesto + CIOT.</dd></div><div><dt>BP-e 63</dt><dd>Passagem.</dd></div><div><dt>NF3e 66</dt><dd>Energia.</dd></div><div><dt>NFCom 62</dt><dd>Comunicação.</dd></div><div><dt>NF-gás 76</dt><dd>Gás.</dd></div><div><dt>DC-e</dt><dd>Conteúdo sem venda.</dd></div><div><dt>GTV-e</dt><dd>Valores.</dd></div><div><dt>PAA</dt><dd>Assinatura DF-e.</dd></div><div><dt>CIOT</dt><dd>Frete ANTT.</dd></div></dl></div><div id="fontes"><h2 class="section-title">Fontes</h2><div class="card static"><p><strong>Oficial:</strong> confaz.fazenda.gov.br/legislacao/ajustes/2026 + Despachos 6,12,15,18,21,23,30,36,42/2026 + DOU.</p><p><strong>Citar:</strong> <em>Portal Ajustes SINIEF 01-40/2026. Didático, sem valor normativo. Out/2026.</em></p><button class="btn small" id="exportNotes">Exportar resumo (txt)</button></div></div></section>
+</main>
+<footer><div class="wrap foot"><p><strong>01–40/2026</strong> — estático, sem backend. Progresso local.</p><p class="muted">Divergência: vale CONFAZ/DOU.</p><p class="foot-links"><a href="https://www.confaz.fazenda.gov.br/legislacao/ajustes/2026/2026" target="_blank" rel="noopener">CONFAZ 2026 ↗</a></p></div></footer>
+<button id="topBtn" title="Topo">↑</button>
+<script src="script.js"></script>
 </body>
 </html>
