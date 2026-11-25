@@ -349,7 +349,7 @@ ${CSS_EXTRA}</style>
     <h2 class="section-title">10. Fontes</h2>
     <div class="detail">
       <p><strong>Oficial:</strong> <a href="${esc(url)}" target="_blank" rel="noopener">Ajuste SINIEF ${n2}/2026 ↗</a> · <a href="${BASE}/legislacao/ajustes/2026/2026" target="_blank" rel="noopener">Ajustes SINIEF 2026 ↗</a>${pub ? ` · ${esc(pub)}${desp ? " (" + esc(desp) + ")" : ""}` : ""}.</p>
-      <p><strong>Citar:</strong> <em>Estudo do Ajuste SINIEF ${a.num}/2026. Didático, sem valor normativo. Out/2026.</em></p>
+      <p><strong>Citar:</strong> <em>Estudo do Ajuste SINIEF ${a.num}/2026. Didático, sem valor normativo. Nov/2026.</em></p>
       <p><a class="btn small" href="index.html">← Voltar ao portal 01-40/2026</a></p>
     </div>
   </section>
